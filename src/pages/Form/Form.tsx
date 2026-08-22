@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import classes from "./Form.module.scss";
 
@@ -7,6 +7,24 @@ import { useNavigate } from "react-router";
 export default function Form() {
   const navigate = useNavigate();
   const [onGoing, setOnGoing] = useState(false);
+  const [employeeData, setEmployeeData] = useState({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    email: "",
+    mobileNumber: "",
+    address: "",
+    contractType: null as "PERMANENT" | "CONTRACT" | null, //only ever options
+    employmentStatus: null as "FULL_TIME" | "PART_TIME" | null,
+    startDate: "",
+    finishDate: "",
+    ongoing: false,
+    hoursPerWeek: -1,
+  });
+
+  useEffect(() => {
+    console.log(employeeData);
+  }, [employeeData]);
 
   const handleBack = () => {
     navigate("/");
@@ -17,13 +35,28 @@ export default function Form() {
     else setOnGoing(true);
   };
 
+  //needs HTMLInputElement
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //name needs [] since its a key value doesn't
+    setEmployeeData({
+      ...employeeData,
+      //check if checked box being edited else set
+      [e.target.name]:
+        e.target.name === "ongoing" ? e.target.checked : e.target.value,
+      // [e.target.name]: e.target.value,
+      // [e.target.name]: e.target.checked,
+      //check boxes are different
+      // contractType: e.target.value as "PERMANENT" | "CONTRACT",
+      // employmentStatus: e.target.value as "PART_TIME" | "FULL_TIME",
+    });
+    // console.log(employeeData);
+  };
+
   const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
 
-    navigate("/");
-  };
+    const newEmployee = {};
 
-  const handleCancel = () => {
     navigate("/");
   };
 
@@ -40,76 +73,150 @@ export default function Form() {
         <h1>Personal Information</h1>
         <div className={classes.form__container}>
           <label htmlFor="firstname">First Name</label>
-          <input id="firstname" type="text"></input>
+          <input
+            id="firstname"
+            name="firstName"
+            type="text"
+            onChange={handleChange}
+          ></input>
 
           <label htmlFor="middlename">Middle Name</label>
-          <input id="middlename" type="text"></input>
+          <input
+            id="middlename"
+            name="middleName"
+            type="text"
+            onChange={handleChange}
+          ></input>
 
           <label htmlFor="lastname">Last Name</label>
-          <input id="lastname" type="text"></input>
+          <input
+            id="lastname"
+            name="lastName"
+            type="text"
+            onChange={handleChange}
+          ></input>
         </div>
         <h1>Contact Details</h1>
         <div className={classes.form__container}>
           <label htmlFor="email">Email Address</label>
-          <input id="email" type="email"></input>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            onChange={handleChange}
+          ></input>
 
           <label htmlFor="mobileNumber">Phone Number</label>
           <p className={classes.form__container__subtitle}>
             Must Be An Australian Number
           </p>
-          <input id="mobileNumber" type="tel"></input>
+          <input
+            id="mobileNumber"
+            name="mobileNumber"
+            type="tel"
+            onChange={handleChange}
+          ></input>
 
           <label htmlFor="address">Residential Address</label>
-          <input id="address" type="text"></input>
+          <input
+            id="address"
+            name="address"
+            type="text"
+            onChange={handleChange}
+          ></input>
         </div>
         <h1>Employee Status</h1>
         <div className={classes.form__container}>
           <label>What Is Contract Type?</label>
 
           <div className={classes["form__radio-container"]}>
-            <input id="permanent" type="radio" name="contractType" />
+            <input
+              id="permanent"
+              type="radio"
+              name="contractType"
+              value="PERMANENT"
+              // checked={employeeData.contractType === "PERMANENT"}
+              onChange={handleChange}
+            />
             <label htmlFor="permanent">Permanent </label>
           </div>
 
           <div className={classes["form__radio-container"]}>
-            <input id="contract" type="radio" name="contractType" />
+            <input
+              id="contract"
+              type="radio"
+              name="contractType"
+              value="CONTRACT"
+              onChange={handleChange}
+              // checked={employeeData.contractType === "CONTRACT"}
+            />
             <label htmlFor="contract">Contract</label>
           </div>
 
           <label htmlFor="startDate">Start Date</label>
-          <input id="startDate" type="date" />
+          <input
+            id="startDate"
+            name="startDate"
+            type="date"
+            onChange={handleChange}
+          />
 
-          <label htmlFor="endDate">End Date</label>
-          <input id="endDate" type="date" disabled={onGoing} />
+          <label htmlFor="finishdate">Finish Date</label>
+          <input
+            id="finishdate"
+            name="finishDate"
+            type="date"
+            disabled={onGoing}
+            onChange={handleChange}
+          />
 
           <div className={classes["form__radio-container"]}>
             <label htmlFor="checkBox">On Going</label>
             <input
               id="checkBox"
               type="checkbox"
+              name="ongoing"
               onClick={handleCheckBoxClick}
+              onChange={handleChange}
             ></input>
           </div>
 
           <label>Is This Part-Time Or Full-Time?</label>
 
           <div className={classes["form__radio-container"]}>
-            <input id="partTime" type="radio" name="timeType" />
+            <input
+              id="partTime"
+              type="radio"
+              name="employmentStatus"
+              value="PART_TIME"
+              onChange={handleChange}
+            />
             <label htmlFor="partTime">Part-Time</label>
           </div>
 
           <div className={classes["form__radio-container"]}>
-            <input id="fullTime" type="radio" name="timeType" />
+            <input
+              id="fullTime"
+              type="radio"
+              name="employmentStatus"
+              value="FULL_TIME"
+              onChange={handleChange}
+            />
             <label htmlFor="fullTime">Full-Time</label>
           </div>
 
           <label htmlFor="hoursPerWeek">Hours Per Week</label>
-          <input id="hoursPerWeek" type="number" />
+          <input
+            id="hoursPerWeek"
+            name="hoursPerWeek"
+            type="number"
+            onChange={handleChange}
+          />
         </div>
 
         <div className={classes["form__button-container"]}>
-          <button>Save</button>
-          <button onClick={handleCancel}>Cancel</button>
+          <button type="submit">Save</button>
+          <button onClick={handleBack}>Cancel</button>
         </div>
       </form>
     </div>
