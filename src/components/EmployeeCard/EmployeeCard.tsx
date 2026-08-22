@@ -2,18 +2,24 @@ import React from "react";
 
 import classes from "./EmployeeCard.module.scss";
 import type { Employee } from "../../Employee";
+import { fetchAllEmployee, deleteEmployee } from "../../services/LoadData";
 
 interface EmloyeeCardProps {
   employee: Employee;
+  setEmployees: (employee: Employee[]) => void;
 }
 
-export default function EmployeeCard({ employee }: EmloyeeCardProps) {
+export default function EmployeeCard({
+  employee,
+  setEmployees,
+}: EmloyeeCardProps) {
   //time = EndDate - Start date
 
   //edge case if finishDate ongoing just create new date()/current
   const endDate = employee.finishDate
     ? new Date(employee.finishDate)
     : new Date();
+
   const startDate = new Date(employee.startDate);
   //   console.log(endDate);
   //   console.log(startDate);
@@ -25,6 +31,12 @@ export default function EmployeeCard({ employee }: EmloyeeCardProps) {
   );
 
   //   console.log(employmentTime);
+
+  const handleDelete = async () => {
+    //don't forget awaits IMPORTANT
+    await deleteEmployee(employee.id);
+    setEmployees(await fetchAllEmployee());
+  };
 
   return (
     <article className={classes["employee-card"]}>
@@ -38,7 +50,7 @@ export default function EmployeeCard({ employee }: EmloyeeCardProps) {
         <p className={classes["employee-card__body"]}>{employee.firstName}</p>
       </div>
       <div className={classes["employee-card__button"]}>
-        <button> Edit</button> | <button>Remove</button>
+        <button> Edit</button> | <button onClick={handleDelete}>Remove</button>
       </div>
     </article>
   );

@@ -32,19 +32,20 @@ export const fetchAllEmployee = async (): Promise<Employee[]> => {
 //   return (await response.json()) as TaskResponse;
 // };
 
-// export const deleteTask = async (id: number) => {
-//   console.log(id);
+export const deleteEmployee = async (id: number) => {
+  console.log(id);
 
-//   //no return needed! delete only
-//   await fetch(BACKEND_URL + "/tasks/" + id, {
-//     method: "DELETE",
-//   });
+  //no return needed! delete only
+  const response = await fetch(BACKEND_URL + "/employees/" + id, {
+    method: "DELETE",
+  });
 
-//   // if (!response.ok) {
-//   //   throw new Error("Failed to Create TASK");
-//   // }
-//   // return (await response.json()) as TaskResponse;
-// };
+  //no return for deletes -> reflects backend
+  if (!response.ok) {
+    throw new Error("Failed to Delete Employee");
+  }
+  // return (await response.json()) as Employee;
+};
 
 // export const patchTask = async (id: number, data: TaskResponse) => {
 //   const response = await fetch(BACKEND_URL + "/tasks/" + id, {

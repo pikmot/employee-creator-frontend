@@ -31,7 +31,13 @@ export default function Home() {
         </div>
       </article>
       {employees.map((employee) => {
-        return <EmployeeCard key={employee["id"]} employee={employee} />;
+        return (
+          <EmployeeCard
+            key={employee["id"]}
+            employee={employee}
+            setEmployees={setEmployees}
+          />
+        );
       })}
     </div>
   );
