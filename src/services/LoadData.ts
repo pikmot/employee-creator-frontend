@@ -19,18 +19,18 @@ export const fetchAllEmployee = async (): Promise<Employee[]> => {
   return response;
 };
 
-// export const createTask = async (data: TaskResponse) => {
-//   const response = await fetch(BACKEND_URL + "/tasks", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(data),
-//   });
+export const createEmployee = async (data: CreateEmployeeData) => {
+  const response = await fetch(BACKEND_URL + "/employees", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
 
-//   if (!response.ok) {
-//     throw new Error("Failed to Create TASK");
-//   }
-//   return (await response.json()) as TaskResponse;
-// };
+  if (!response.ok) {
+    throw new Error("Failed to Create Employee");
+  }
+  return (await response.json()) as CreateEmployeeData;
+};
 
 export const deleteEmployee = async (id: number) => {
   // console.log(id);

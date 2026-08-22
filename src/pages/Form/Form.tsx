@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import classes from "./Form.module.scss";
 
 import { useNavigate } from "react-router";
+import { createEmployee } from "../../services/LoadData";
 
 export default function Form() {
   const navigate = useNavigate();
@@ -14,8 +15,8 @@ export default function Form() {
     email: "",
     mobileNumber: "",
     address: "",
-    contractType: "PERMANENT" as "PERMANENT" | "CONTRACT" | null, //only ever options
-    employmentStatus: "PART_TIME" as "FULL_TIME" | "PART_TIME" | null,
+    contractType: "PERMANENT" as "PERMANENT" | "CONTRACT", //only ever options
+    employmentStatus: "PART_TIME" as "FULL_TIME" | "PART_TIME",
     startDate: "",
     finishDate: "",
     ongoing: false,
@@ -52,10 +53,10 @@ export default function Form() {
     // console.log(employeeData);
   };
 
-  const handleSubmit = (e: React.SubmitEvent) => {
+  const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
 
-    const newEmployee = {};
+    await createEmployee(employeeData);
 
     navigate("/");
   };
