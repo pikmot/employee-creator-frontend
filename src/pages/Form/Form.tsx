@@ -23,9 +23,9 @@ export default function Form() {
     hoursPerWeek: 0,
   });
 
-  useEffect(() => {
-    console.log(employeeData);
-  }, [employeeData]);
+  // useEffect(() => {
+  //   console.log(employeeData);
+  // }, [employeeData]);
 
   const handleBack = () => {
     navigate("/");
@@ -80,6 +80,7 @@ export default function Form() {
             type="text"
             value={employeeData.firstName}
             onChange={handleChange}
+            required
           ></input>
 
           <label htmlFor="middlename">Middle Name</label>
@@ -98,6 +99,7 @@ export default function Form() {
             type="text"
             value={employeeData.lastName}
             onChange={handleChange}
+            required
           ></input>
         </div>
         <h1>Contact Details</h1>
@@ -109,6 +111,7 @@ export default function Form() {
             type="email"
             value={employeeData.email}
             onChange={handleChange}
+            required
           ></input>
 
           <label htmlFor="mobileNumber">Phone Number</label>
@@ -121,6 +124,7 @@ export default function Form() {
             type="tel"
             value={employeeData.mobileNumber}
             onChange={handleChange}
+            required
           ></input>
 
           <label htmlFor="address">Residential Address</label>
@@ -130,6 +134,7 @@ export default function Form() {
             type="text"
             value={employeeData.address}
             onChange={handleChange}
+            required
           ></input>
         </div>
         <h1>Employee Status</h1>
@@ -167,6 +172,7 @@ export default function Form() {
             type="date"
             value={employeeData.startDate}
             onChange={handleChange}
+            required
           />
 
           <label htmlFor="finishdate">Finish Date</label>
@@ -177,6 +183,7 @@ export default function Form() {
             value={employeeData.finishDate}
             disabled={onGoing}
             onChange={handleChange}
+            required
           />
 
           <div className={classes["form__radio-container"]}>
@@ -224,6 +231,8 @@ export default function Form() {
             type="number"
             value={employeeData.hoursPerWeek}
             onChange={handleChange}
+            min={1}
+            max={168}
           />
         </div>
 
