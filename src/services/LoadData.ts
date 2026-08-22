@@ -33,7 +33,7 @@ export const fetchAllEmployee = async (): Promise<Employee[]> => {
 // };
 
 export const deleteEmployee = async (id: number) => {
-  console.log(id);
+  // console.log(id);
 
   //no return needed! delete only
   const response = await fetch(BACKEND_URL + "/employees/" + id, {

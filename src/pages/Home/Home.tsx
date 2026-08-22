@@ -5,14 +5,21 @@ import classes from "./Home.module.scss";
 import { fetchAllEmployee } from "../../services/LoadData";
 import type { Employee } from "../../Employee";
 import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
+import { useNavigate } from "react-router";
 
 export default function Home() {
   const [employees, setEmployees] = useState<Employee[]>([]);
+
+  const navigate = useNavigate();
 
   const getEmployeesData = async () => {
     const data = await fetchAllEmployee();
 
     setEmployees(data);
+  };
+
+  const handleClick = () => {
+    navigate("/employees/createEmployee");
   };
 
   useEffect(() => {
@@ -27,7 +34,7 @@ export default function Home() {
           <p className={classes["home__sub-title__text"]}>
             Please Click On "EDIT" for furhter details
           </p>
-          <button>Add Employee</button>
+          <button onClick={handleClick}>Add Employee</button>
         </div>
       </article>
       {employees.map((employee) => {
