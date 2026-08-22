@@ -1,24 +1,23 @@
-// const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+//add type or error something to do with intefaces NOT values
+import type {
+  Employee,
+  CreateEmployeeData,
+  UpdateEmployeeData,
+} from "../Employee";
 
-// // import { couldStartTrivia } from "typescript/unstable/ast";
-// import { TaskData } from "../pages/Home/Home";
+export const fetchAllEmployee = async (): Promise<Employee[]> => {
+  let response: Employee[] = await fetch(BACKEND_URL + "/employees").then(
+    (res) => res.json(),
+  );
 
-// export type TaskResponse = {
-//   title?: string;
-//   description?: string;
-//   status?: string;
-// };
+  // .then(console.log)
+  // .catch(console.warn);
 
-// export const fetchAllTasks = async (): Promise<TaskData[]> => {
-//   let response: TaskData[] = await fetch(BACKEND_URL + "/tasks").then((res) =>
-//     res.json(),
-//   );
+  console.log(response);
 
-//   // .then(console.log)
-//   // .catch(console.warn);
-
-//   return response;
-// };
+  return response;
+};
 
 // export const createTask = async (data: TaskResponse) => {
 //   const response = await fetch(BACKEND_URL + "/tasks", {
@@ -60,11 +59,11 @@
 //   // return data
 // };
 
-// // console.log("RUNNING TSX");
+console.log("RUNNING TSX");
 
-// // createTask({ title: "TEST", description: "DESC", status: "START" });
-// // patchTask(2, { title: "TEST NEW NEW" });
+// createTask({ title: "TEST", description: "DESC", status: "START" });
+// patchTask(2, { title: "TEST NEW NEW" });
 
+fetchAllEmployee();
+// deleteTask(4);
 // fetchAllTasks();
-// // deleteTask(4);
-// // fetchAllTasks();

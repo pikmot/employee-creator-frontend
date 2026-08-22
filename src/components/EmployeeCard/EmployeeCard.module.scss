@@ -1,0 +1,32 @@
+@use "../../scss/mixins/mixins";
+@use "../../scss/mixins/colors" as *;
+
+.employee-card {
+  @include mixins.dimension();
+  @include mixins.flexbox(row, space-between, flex-start);
+  @include mixins.wrap(flex-start);
+
+  padding: 1rem;
+
+  font-size: 32px;
+
+  &__title {
+    font-weight: 600;
+    font-size: 48px;
+    margin: 0 0 12px 0;
+  }
+
+  &__body {
+    margin: 0;
+  }
+
+  &__button {
+    button {
+      border: none;
+      background: none;
+      color: $button-color;
+
+      font-weight: 600;
+    }
+  }
+}

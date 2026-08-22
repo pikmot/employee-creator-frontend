@@ -1,0 +1,27 @@
+@use "../../scss/mixins/mixins";
+@use "../../scss/mixins/colors" as *;
+
+html {
+  background-color: rgba(138, 138, 138, 0.493);
+}
+
+.home {
+  @include mixins.dimension(100vw, 100vh);
+
+  &__header {
+    background-color: $header-bg;
+    padding: 2rem 4rem;
+
+    font-size: 48px;
+
+    margin: 0;
+  }
+
+  &__sub-title {
+    @include mixins.flexbox(row, space-around);
+    @include mixins.wrap();
+    font-size: 24px;
+
+    gap: 4rem;
+  }
+}
