@@ -3,6 +3,7 @@ import React from "react";
 import classes from "./EmployeeCard.module.scss";
 import type { Employee } from "../../Employee";
 import { fetchAllEmployee, deleteEmployee } from "../../services/LoadData";
+import { useNavigate } from "react-router";
 
 interface EmloyeeCardProps {
   employee: Employee;
@@ -13,6 +14,8 @@ export default function EmployeeCard({
   employee,
   setEmployees,
 }: EmloyeeCardProps) {
+  const navigate = useNavigate();
+
   //time = EndDate - Start date
 
   //edge case if finishDate ongoing just create new date()/current
@@ -38,6 +41,10 @@ export default function EmployeeCard({
     setEmployees(await fetchAllEmployee());
   };
 
+  const handleEdit = async () => {
+    navigate("/employees/" + employee.id + "/editEmployee");
+  };
+
   return (
     <article className={classes["employee-card"]}>
       <div>
@@ -50,7 +57,8 @@ export default function EmployeeCard({
         <p className={classes["employee-card__body"]}>{employee.firstName}</p>
       </div>
       <div className={classes["employee-card__button"]}>
-        <button> Edit</button> | <button onClick={handleDelete}>Remove</button>
+        <button onClick={handleEdit}> Edit</button> |{" "}
+        <button onClick={handleDelete}>Remove</button>
       </div>
     </article>
   );

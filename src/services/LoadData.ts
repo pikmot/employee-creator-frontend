@@ -11,8 +11,15 @@ export const fetchAllEmployee = async (): Promise<Employee[]> => {
     (res) => res.json(),
   );
 
-  // .then(console.log)
-  // .catch(console.warn);
+  console.log(response);
+
+  return response;
+};
+
+export const fetchEmployeeById = async (id: number): Promise<Employee> => {
+  let response: Employee = await fetch(BACKEND_URL + "/employees/" + id).then(
+    (res) => res.json(),
+  );
 
   console.log(response);
 
@@ -47,24 +54,19 @@ export const deleteEmployee = async (id: number) => {
   // return (await response.json()) as Employee;
 };
 
-// export const patchTask = async (id: number, data: TaskResponse) => {
-//   const response = await fetch(BACKEND_URL + "/tasks/" + id, {
-//     method: "PATCH",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(data),
-//   });
-
-//   // if (!response.ok) {
-//   //   throw new Error("Failed to Create TASK");
-//   // }
-//   // return data
-// };
+export const patchEmployee = async (id: number, data: CreateEmployeeData) => {
+  const response = await fetch(BACKEND_URL + "/employees/" + id, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+};
 
 console.log("RUNNING TSX");
 
 // createTask({ title: "TEST", description: "DESC", status: "START" });
 // patchTask(2, { title: "TEST NEW NEW" });
 
-fetchAllEmployee();
+// fetchAllEmployee();
 // deleteTask(4);
 // fetchAllTasks();

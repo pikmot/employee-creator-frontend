@@ -2,11 +2,18 @@ import React, { useEffect, useState } from "react";
 
 import classes from "./Form.module.scss";
 
-import { useNavigate } from "react-router";
-import { createEmployee } from "../../services/LoadData";
+import { useNavigate, useParams } from "react-router";
+import {
+  createEmployee,
+  fetchEmployeeById,
+  patchEmployee,
+} from "../../services/LoadData";
 
 export default function Form() {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const isEditingEmployee = Boolean(id);
+
   const [onGoing, setOnGoing] = useState(false);
   const [employeeData, setEmployeeData] = useState({
     firstName: "",
@@ -26,6 +33,25 @@ export default function Form() {
   // useEffect(() => {
   //   console.log(employeeData);
   // }, [employeeData]);
+
+  const getEmployeeDetails = async () => {
+    //somethings may be null -> apply nullish coalesce to set ""
+
+    const data = await fetchEmployeeById(Number(id));
+
+    setEmployeeData({
+      ...data,
+      middleName: data.middleName ?? "",
+      finishDate: data.finishDate ?? "",
+      ongoing: data.ongoing ?? false,
+    });
+  };
+
+  useEffect(() => {
+    if (isEditingEmployee) {
+      getEmployeeDetails();
+    }
+  }, []);
 
   const handleBack = () => {
     navigate("/");
@@ -56,7 +82,11 @@ export default function Form() {
   const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
 
-    await createEmployee(employeeData);
+    if (isEditingEmployee) {
+      await patchEmployee(Number(id), employeeData);
+    } else {
+      await createEmployee(employeeData);
+    }
 
     navigate("/");
   };
