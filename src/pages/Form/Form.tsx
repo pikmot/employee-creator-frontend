@@ -14,12 +14,12 @@ export default function Form() {
     email: "",
     mobileNumber: "",
     address: "",
-    contractType: null as "PERMANENT" | "CONTRACT" | null, //only ever options
-    employmentStatus: null as "FULL_TIME" | "PART_TIME" | null,
+    contractType: "PERMANENT" as "PERMANENT" | "CONTRACT" | null, //only ever options
+    employmentStatus: "PART_TIME" as "FULL_TIME" | "PART_TIME" | null,
     startDate: "",
     finishDate: "",
     ongoing: false,
-    hoursPerWeek: -1,
+    hoursPerWeek: 0,
   });
 
   useEffect(() => {
@@ -77,6 +77,7 @@ export default function Form() {
             id="firstname"
             name="firstName"
             type="text"
+            value={employeeData.firstName}
             onChange={handleChange}
           ></input>
 
@@ -85,6 +86,7 @@ export default function Form() {
             id="middlename"
             name="middleName"
             type="text"
+            value={employeeData.middleName}
             onChange={handleChange}
           ></input>
 
@@ -93,6 +95,7 @@ export default function Form() {
             id="lastname"
             name="lastName"
             type="text"
+            value={employeeData.lastName}
             onChange={handleChange}
           ></input>
         </div>
@@ -103,6 +106,7 @@ export default function Form() {
             id="email"
             name="email"
             type="email"
+            value={employeeData.email}
             onChange={handleChange}
           ></input>
 
@@ -114,6 +118,7 @@ export default function Form() {
             id="mobileNumber"
             name="mobileNumber"
             type="tel"
+            value={employeeData.mobileNumber}
             onChange={handleChange}
           ></input>
 
@@ -122,6 +127,7 @@ export default function Form() {
             id="address"
             name="address"
             type="text"
+            value={employeeData.address}
             onChange={handleChange}
           ></input>
         </div>
@@ -135,7 +141,7 @@ export default function Form() {
               type="radio"
               name="contractType"
               value="PERMANENT"
-              // checked={employeeData.contractType === "PERMANENT"}
+              checked={employeeData.contractType === "PERMANENT"}
               onChange={handleChange}
             />
             <label htmlFor="permanent">Permanent </label>
@@ -148,7 +154,7 @@ export default function Form() {
               name="contractType"
               value="CONTRACT"
               onChange={handleChange}
-              // checked={employeeData.contractType === "CONTRACT"}
+              checked={employeeData.contractType === "CONTRACT"}
             />
             <label htmlFor="contract">Contract</label>
           </div>
@@ -158,6 +164,7 @@ export default function Form() {
             id="startDate"
             name="startDate"
             type="date"
+            value={employeeData.startDate}
             onChange={handleChange}
           />
 
@@ -166,6 +173,7 @@ export default function Form() {
             id="finishdate"
             name="finishDate"
             type="date"
+            value={employeeData.finishDate}
             disabled={onGoing}
             onChange={handleChange}
           />
@@ -176,6 +184,7 @@ export default function Form() {
               id="checkBox"
               type="checkbox"
               name="ongoing"
+              checked={employeeData.ongoing}
               onClick={handleCheckBoxClick}
               onChange={handleChange}
             ></input>
@@ -189,6 +198,7 @@ export default function Form() {
               type="radio"
               name="employmentStatus"
               value="PART_TIME"
+              checked={employeeData.employmentStatus === "PART_TIME"}
               onChange={handleChange}
             />
             <label htmlFor="partTime">Part-Time</label>
@@ -200,6 +210,7 @@ export default function Form() {
               type="radio"
               name="employmentStatus"
               value="FULL_TIME"
+              checked={employeeData.employmentStatus === "FULL_TIME"}
               onChange={handleChange}
             />
             <label htmlFor="fullTime">Full-Time</label>
@@ -210,6 +221,7 @@ export default function Form() {
             id="hoursPerWeek"
             name="hoursPerWeek"
             type="number"
+            value={employeeData.hoursPerWeek}
             onChange={handleChange}
           />
         </div>
