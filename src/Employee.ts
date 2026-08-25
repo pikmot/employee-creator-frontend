@@ -10,7 +10,7 @@ export interface Employee {
   employmentStatus: "FULL_TIME" | "PART_TIME";
   startDate: string;
   finishDate: string;
-  ongoing: boolean;
+  onGoing: boolean;
   hoursPerWeek: number;
 }
 export interface CreateEmployeeData {
@@ -24,7 +24,7 @@ export interface CreateEmployeeData {
   employmentStatus: "FULL_TIME" | "PART_TIME";
   startDate: string;
   finishDate: string;
-  ongoing: boolean;
+  onGoing: boolean;
   hoursPerWeek: number;
 }
 export interface UpdateEmployeeData {}

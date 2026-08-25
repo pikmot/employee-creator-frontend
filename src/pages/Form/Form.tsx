@@ -26,7 +26,7 @@ export default function Form() {
     employmentStatus: "PART_TIME" as "FULL_TIME" | "PART_TIME",
     startDate: "",
     finishDate: "",
-    ongoing: false,
+    onGoing: false,
     hoursPerWeek: 0,
   });
 
@@ -43,7 +43,7 @@ export default function Form() {
       ...data,
       middleName: data.middleName ?? "",
       finishDate: data.finishDate ?? "",
-      ongoing: data.ongoing ?? false,
+      onGoing: data.onGoing ?? false,
     });
   };
 
@@ -69,7 +69,7 @@ export default function Form() {
       ...employeeData,
       //check if checked box being edited else set
       [e.target.name]:
-        e.target.name === "ongoing" ? e.target.checked : e.target.value,
+        e.target.name === "onGoing" ? e.target.checked : e.target.value,
       // [e.target.name]: e.target.value,
       // [e.target.name]: e.target.checked,
       //check boxes are different
@@ -221,8 +221,8 @@ export default function Form() {
             <input
               id="checkBox"
               type="checkbox"
-              name="ongoing"
-              checked={employeeData.ongoing}
+              name="onGoing"
+              checked={employeeData.onGoing}
               onClick={handleCheckBoxClick}
               onChange={handleChange}
             ></input>
