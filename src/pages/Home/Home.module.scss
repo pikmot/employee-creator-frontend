@@ -2,7 +2,7 @@
 @use "../../scss/mixins/colors" as *;
 
 html {
-  background-color: rgba(138, 138, 138, 0.493);
+  background-color: $bg;
 }
 
 .home {
