@@ -14,7 +14,7 @@ export default function Form() {
   const { id } = useParams();
   const isEditingEmployee = Boolean(id);
 
-  const [onGoing, setOnGoing] = useState(false);
+  // const [onGoing, setOnGoing] = useState(false);
   const [employeeData, setEmployeeData] = useState({
     firstName: "",
     middleName: "",
@@ -57,10 +57,10 @@ export default function Form() {
     navigate("/");
   };
 
-  const handleCheckBoxClick = () => {
-    if (onGoing) setOnGoing(false);
-    else setOnGoing(true);
-  };
+  // const handleCheckBoxClick = () => {
+  //   if (onGoing) setOnGoing(false);
+  //   else setOnGoing(true);
+  // };
 
   //needs HTMLInputElement
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -211,7 +211,7 @@ export default function Form() {
             name="finishDate"
             type="date"
             value={employeeData.finishDate}
-            disabled={onGoing}
+            disabled={employeeData.onGoing}
             onChange={handleChange}
             required
           />
@@ -223,7 +223,7 @@ export default function Form() {
               type="checkbox"
               name="onGoing"
               checked={employeeData.onGoing}
-              onClick={handleCheckBoxClick}
+              // onClick={handleCheckBoxClick}
               onChange={handleChange}
             ></input>
           </div>
@@ -268,7 +268,9 @@ export default function Form() {
 
         <div className={classes["form__button-container"]}>
           <button type="submit">Save</button>
-          <button onClick={handleBack}>Cancel</button>
+          <button onClick={handleBack} type="button">
+            Cancel
+          </button>
         </div>
       </form>
     </div>
