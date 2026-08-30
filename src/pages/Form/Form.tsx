@@ -266,6 +266,8 @@ export default function Form() {
           />
         </div>
 
+        <br></br>
+
         <div className={classes["form__button-container"]}>
           <button type="submit">Save</button>
           <button onClick={handleBack} type="button">

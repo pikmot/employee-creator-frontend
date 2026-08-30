@@ -32,7 +32,7 @@ export default function Home() {
       <article>
         <div className={classes["home__sub-title"]}>
           <p className={classes["home__sub-title__text"]}>
-            Please Click On "EDIT" for furhter details
+            Please Click On "EDIT" for further details
           </p>
           <button onClick={handleClick}>Add Employee</button>
         </div>
