@@ -1,5 +1,6 @@
 @use "../../scss/mixins/mixins";
 @use "../../scss/mixins/colors" as *;
+@use "../../scss/mixins/media";
 
 html {
   background-color: $bg;
@@ -12,7 +13,7 @@ html {
     background-color: $header-bg;
     padding: 2rem 4rem;
 
-    font-size: 48px;
+    font-size: 24px;
 
     margin: 0;
   }
@@ -20,8 +21,25 @@ html {
   &__sub-title {
     @include mixins.flexbox(row, space-around);
     @include mixins.wrap();
-    font-size: 24px;
+    font-size: 18px;
 
     gap: 4rem;
+  }
+
+  @include media.breakpoint(tablet) {
+    &__header {
+      font-size: 24px;
+    }
+
+    &__sub-title {
+      font-size: 18px;
+    }
+  }
+
+  @include media.breakpoint(large-tablet) {
+  }
+  @include media.breakpoint(laptop) {
+  }
+  @include media.breakpoint(desktop) {
   }
 }

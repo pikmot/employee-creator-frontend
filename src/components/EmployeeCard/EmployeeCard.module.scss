@@ -1,5 +1,6 @@
 @use "../../scss/mixins/mixins";
 @use "../../scss/mixins/colors" as *;
+@use "../../scss/mixins/media";
 
 .employee-card {
   @include mixins.dimension();
@@ -8,7 +9,7 @@
 
   padding: 1rem;
 
-  font-size: 32px;
+  font-size: 24px;
 
   &__title {
     font-weight: 600;
@@ -28,5 +29,23 @@
 
       font-weight: 600;
     }
+  }
+
+  @include media.breakpoint(tablet) {
+    &__title {
+    }
+
+    &__button {
+      button {
+        font-weight: 600;
+      }
+    }
+  }
+
+  @include media.breakpoint(large-tablet) {
+  }
+  @include media.breakpoint(laptop) {
+  }
+  @include media.breakpoint(desktop) {
   }
 }
