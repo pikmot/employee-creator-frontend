@@ -14,15 +14,12 @@ import {
 } from "../../services/LoadData";
 
 export default function Form() {
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const isEditingEmployee = Boolean(id);
-
   const {
     reset,
     formState: { errors, isSubmitSuccesful },
     register,
     handleSubmit,
+    watch,
   } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -30,6 +27,12 @@ export default function Form() {
       employmentStatus: "PART_TIME",
     },
   });
+
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const isEditingEmployee = Boolean(id);
+
+  const disableFinishDate = watch("onGoing");
 
   // const [onGoing, setOnGoing] = useState(false);
   const [employeeData, setEmployeeData] = useState({
@@ -291,7 +294,12 @@ export default function Form() {
             required
           /> */}
 
-          <input id="finishDate" type="date" {...register("finishDate")} />
+          <input
+            id="finishDate"
+            type="date"
+            disabled={disableFinishDate}
+            {...register("finishDate")}
+          />
 
           <div className={classes["form__radio-container"]}>
             <label htmlFor="checkBox">On Going</label>
@@ -303,6 +311,8 @@ export default function Form() {
               // onClick={handleCheckBoxClick}
               onChange={handleChange}
             ></input> */}
+
+            <input id="checkBox" type="checkbox" {...register("onGoing")} />
           </div>
 
           <label>Is This Part-Time Or Full-Time?</label>
