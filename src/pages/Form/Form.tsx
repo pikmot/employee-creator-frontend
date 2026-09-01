@@ -23,7 +23,13 @@ export default function Form() {
     formState: { errors, isSubmitSuccesful },
     register,
     handleSubmit,
-  } = useForm({ resolver: zodResolver(schema) });
+  } = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      contractType: "PERMANENT",
+      employmentStatus: "PART_TIME",
+    },
+  });
 
   // const [onGoing, setOnGoing] = useState(false);
   const [employeeData, setEmployeeData] = useState({
@@ -171,7 +177,7 @@ export default function Form() {
             required
           ></input> */}
 
-          <input id="email" type="text" {...register("email")} />
+          <input id="email" type="email" {...register("email")} />
           <small className={classes["form__error-text"]}>
             {errors.email?.message}
           </small>
@@ -189,11 +195,7 @@ export default function Form() {
             required
           ></input> */}
 
-          <input
-            id="mobileNumber"
-            type="number"
-            {...register("mobileNumber")}
-          />
+          <input id="mobileNumber" type="tel" {...register("mobileNumber")} />
           <small className={classes["form__error-text"]}>
             {errors.mobileNumber?.message}
           </small>
