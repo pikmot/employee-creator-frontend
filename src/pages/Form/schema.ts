@@ -7,12 +7,12 @@ export const schema = z.object({
   email: z.string().min(1, { error: "Email Must Not be Blank" }),
   mobileNumber: z.string().min(1, { error: "Mobile Number Must Not be Blank" }),
   address: z.string().min(1, { error: "Address Must Not be Blank" }),
-  contract: z.enum(["PERMANENT", "CONTRACT"]),
+  contractType: z.enum(["PERMANENT", "CONTRACT"]),
   employmentStatus: z.enum(["FULL_TIME", "PART_TIME"]),
   startDate: z.string().min(1, "Start Date is Required"),
   finishDate: z.string().optional(),
   onGoing: z.boolean(),
-  hoursPerWeek: z.number().min(1).max(168),
+  hoursPerWeek: z.coerce.number().min(1).max(168),
 });
 
 export type EmployeeFormData = z.infer<typeof schema>;
