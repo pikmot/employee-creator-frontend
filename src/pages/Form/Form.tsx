@@ -59,7 +59,14 @@ export default function Form() {
 
     const data = await fetchEmployeeById(Number(id));
 
-    setEmployeeData({
+    // setEmployeeData({
+    //   ...data,
+    //   middleName: data.middleName ?? "",
+    //   finishDate: data.finishDate ?? "",
+    //   onGoing: data.onGoing ?? false,
+    // });
+
+    reset({
       ...data,
       middleName: data.middleName ?? "",
       finishDate: data.finishDate ?? "",
@@ -112,7 +119,13 @@ export default function Form() {
   // };
 
   const onSubmit = async (data) => {
-    console.log(data);
+    if (isEditingEmployee) {
+      await patchEmployee(Number(id), data);
+    } else {
+      await createEmployee(data);
+    }
+
+    navigate("/");
   };
 
   return (
