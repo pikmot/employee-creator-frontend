@@ -3,7 +3,7 @@
 @use "../../scss/mixins/media";
 
 .employee-card {
-  @include mixins.dimension();
+  @include mixins.dimension(80%);
   @include mixins.flexbox(row, space-between, flex-start);
   @include mixins.wrap(flex-start);
 
@@ -11,10 +11,18 @@
 
   font-size: 24px;
 
+  border-top: 2px solid $break-color;
+
+  margin: 0 auto;
+
+  &:last-child {
+    border-bottom: 2px solid $break-color;
+  }
+
   &__title {
-    font-weight: 600;
-    font-size: 48px;
-    margin: 0 0 12px 0;
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0 0 6px 0;
   }
 
   &__body {
