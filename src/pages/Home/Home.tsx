@@ -4,11 +4,16 @@ import classes from "./Home.module.scss";
 
 import { fetchAllEmployee } from "../../services/LoadData";
 import type { Employee } from "../../Employee";
-import EmployeeCard from "../../components/EmployeeCard/EmployeeCard";
+import EmployeeCardRow from "../../components/EmployeeCardRow/EmployeeCardRow";
 import { useNavigate } from "react-router";
+
+import tableGrid from "../../assets/icons/table-list-solid-full.svg";
+import tableRow from "../../assets/icons/table-cells-solid-full.svg";
 
 export default function Home() {
   const [employees, setEmployees] = useState<Employee[]>([]);
+
+  const [tableState, setTableState] = useState(0);
 
   const navigate = useNavigate();
 
@@ -16,6 +21,16 @@ export default function Home() {
     const data = await fetchAllEmployee();
 
     setEmployees(data);
+  };
+
+  const handleTableChange = () => {
+    console.log(tableState);
+
+    if (tableState == 0) {
+      setTableState(1);
+    } else {
+      setTableState(0);
+    }
   };
 
   const handleClick = () => {
@@ -36,10 +51,26 @@ export default function Home() {
           </p>
           <button onClick={handleClick}>Add Employee</button>
         </div>
+        <div className={classes.img__container}>
+          <button
+            onClick={handleTableChange}
+            disabled={tableState === 1}
+            className={tableState ? classes.clicked : ""}
+          >
+            <img src={tableGrid} />
+          </button>
+          <button
+            onClick={handleTableChange}
+            disabled={tableState === 0}
+            className={tableState ? "" : classes.clicked}
+          >
+            <img src={tableRow} />
+          </button>
+        </div>
       </article>
       {employees.map((employee) => {
         return (
-          <EmployeeCard
+          <EmployeeCardRow
             key={employee["id"]}
             employee={employee}
             setEmployees={setEmployees}

@@ -6,6 +6,18 @@ html {
   background-color: $bg;
 }
 
+.img__container {
+  @include mixins.flexbox();
+
+  margin: 0 auto;
+
+  img {
+    @include mixins.dimension(36px, 36px);
+  }
+}
+.clicked {
+  opacity: 50%;
+}
 .home {
   @include mixins.dimension(100vw, 100vh);
 

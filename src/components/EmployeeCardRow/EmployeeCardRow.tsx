@@ -1,6 +1,6 @@
 import React from "react";
 
-import classes from "./EmployeeCard.module.scss";
+import classes from "./EmployeeCardRow.module.scss";
 import type { Employee } from "../../Employee";
 import { fetchAllEmployee, deleteEmployee } from "../../services/LoadData";
 import { useNavigate } from "react-router";
