@@ -11,6 +11,8 @@ html {
 
   margin: 0 auto;
 
+  padding-bottom: 16px;
+
   img {
     @include mixins.dimension(36px, 36px);
   }
@@ -18,8 +20,21 @@ html {
 .clicked {
   opacity: 50%;
 }
+
+.card {
+  @include mixins.dimension(100%, 100%);
+  @include mixins.flexbox();
+  @include mixins.wrap();
+
+  gap: 1rem;
+
+  margin: 0;
+  padding: 0;
+}
+
 .home {
   @include mixins.dimension(100vw, 100vh);
+  @include mixins.wrap();
 
   &__header {
     background-color: $header-bg;

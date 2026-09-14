@@ -5,6 +5,7 @@ import classes from "./Home.module.scss";
 import { fetchAllEmployee } from "../../services/LoadData";
 import type { Employee } from "../../Employee";
 import EmployeeCardRow from "../../components/EmployeeCardRow/EmployeeCardRow";
+import EmployeeCardBlock from "../../components/EmployeeCardBlock/EmployeeCardBlock";
 import { useNavigate } from "react-router";
 
 import tableGrid from "../../assets/icons/table-list-solid-full.svg";
@@ -13,7 +14,7 @@ import tableRow from "../../assets/icons/table-cells-solid-full.svg";
 export default function Home() {
   const [employees, setEmployees] = useState<Employee[]>([]);
 
-  const [tableState, setTableState] = useState(0);
+  const [tableState, setTableState] = useState(1);
 
   const navigate = useNavigate();
 
@@ -24,8 +25,6 @@ export default function Home() {
   };
 
   const handleTableChange = () => {
-    console.log(tableState);
-
     if (tableState == 0) {
       setTableState(1);
     } else {
@@ -68,15 +67,28 @@ export default function Home() {
           </button>
         </div>
       </article>
-      {employees.map((employee) => {
-        return (
-          <EmployeeCardRow
-            key={employee["id"]}
-            employee={employee}
-            setEmployees={setEmployees}
-          />
-        );
-      })}
+
+      <div className={classes.card}>
+        {employees.map((employee) => {
+          if (tableState === 1) {
+            return (
+              <EmployeeCardRow
+                key={employee["id"]}
+                employee={employee}
+                setEmployees={setEmployees}
+              />
+            );
+          } else {
+            return (
+              <EmployeeCardBlock
+                key={employee["id"]}
+                employee={employee}
+                setEmployees={setEmployees}
+              />
+            );
+          }
+        })}
+      </div>
     </div>
   );
 }

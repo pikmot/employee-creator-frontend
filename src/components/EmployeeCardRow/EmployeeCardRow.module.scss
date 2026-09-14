@@ -39,6 +39,10 @@
     }
   }
 
+  &__img {
+    @include mixins.dimension(150px);
+  }
+
   @include media.breakpoint(tablet) {
     &__title {
     }

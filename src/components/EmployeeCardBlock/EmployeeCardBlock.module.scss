@@ -1,0 +1,65 @@
+@use "../../scss/mixins/mixins";
+@use "../../scss/mixins/colors" as *;
+@use "../../scss/mixins/media";
+
+.employee-card {
+  @include mixins.dimension(300px);
+  @include mixins.flexbox(column, center, center);
+
+  padding: 1rem;
+
+  font-size: 24px;
+
+  border: 2px solid $break-color;
+  border-radius: 1rem;
+
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+
+  &:hover {
+    box-shadow: 0 15px 15px 3px rgb(0 0 0 / 0.1);
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0 0 6px 0;
+    text-align: center;
+  }
+
+  &__body {
+    margin: 0;
+    text-align: center;
+  }
+
+  &__button {
+    text-align: center;
+    button {
+      border: none;
+      background: none;
+      color: $button-color;
+
+      font-weight: 600;
+    }
+  }
+  &__img {
+    @include mixins.dimension();
+  }
+
+  @include media.breakpoint(tablet) {
+    &__title {
+    }
+
+    &__button {
+      button {
+        font-weight: 600;
+      }
+    }
+  }
+
+  @include media.breakpoint(large-tablet) {
+  }
+  @include media.breakpoint(laptop) {
+  }
+  @include media.breakpoint(desktop) {
+  }
+}

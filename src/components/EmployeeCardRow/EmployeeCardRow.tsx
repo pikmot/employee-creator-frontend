@@ -5,7 +5,9 @@ import type { Employee } from "../../Employee";
 import { fetchAllEmployee, deleteEmployee } from "../../services/LoadData";
 import { useNavigate } from "react-router";
 
-interface EmloyeeCardProps {
+import userImg from "../../assets/icons/circle-user-solid-full.svg";
+
+interface EmloyeeCardRowProps {
   employee: Employee;
   setEmployees: (employee: Employee[]) => void;
 }
@@ -13,7 +15,7 @@ interface EmloyeeCardProps {
 export default function EmployeeCard({
   employee,
   setEmployees,
-}: EmloyeeCardProps) {
+}: EmloyeeCardRowProps) {
   const navigate = useNavigate();
 
   //time = EndDate - Start date
@@ -47,6 +49,7 @@ export default function EmployeeCard({
 
   return (
     <article className={classes["employee-card"]}>
+      <img src={userImg} className={classes["employee-card__img"]} />
       <div>
         <p className={classes["employee-card__title"]}>
           {employee.firstName} {employee.middleName} {employee.lastName}
