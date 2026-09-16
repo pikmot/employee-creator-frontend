@@ -1,10 +1,11 @@
 @use "../../scss/mixins/mixins";
 @use "../../scss/mixins/colors" as *;
 @use "../../scss/mixins/media";
+@use "../../scss/mixins/fonts" as *;
 
 .employee-card {
   @include mixins.dimension(80%);
-  @include mixins.flexbox(row, space-between, flex-start);
+  @include mixins.flexbox(row, flex-start);
   @include mixins.wrap(flex-start);
 
   padding: 1rem;
@@ -30,10 +31,14 @@
   }
 
   &__button {
+    margin-left: auto;
+
     button {
       border: none;
       background: none;
       color: $button-color;
+
+      cursor: pointer;
 
       font-weight: 600;
     }
@@ -41,6 +46,11 @@
 
   &__img {
     @include mixins.dimension(150px);
+
+    // border-right: 6px solid $break-color;
+  }
+
+  .pair-container {
   }
 
   @include media.breakpoint(tablet) {

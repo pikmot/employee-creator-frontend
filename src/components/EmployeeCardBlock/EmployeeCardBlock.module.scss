@@ -17,6 +17,7 @@
 
   &:hover {
     box-shadow: 0 15px 15px 3px rgb(0 0 0 / 0.1);
+    transform: scale(1.05);
   }
 
   &__title {
@@ -37,6 +38,7 @@
       border: none;
       background: none;
       color: $button-color;
+      cursor: pointer;
 
       font-weight: 600;
     }

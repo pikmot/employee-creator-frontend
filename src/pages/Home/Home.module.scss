@@ -1,6 +1,7 @@
 @use "../../scss/mixins/mixins";
 @use "../../scss/mixins/colors" as *;
 @use "../../scss/mixins/media";
+@use "../../scss/mixins/fonts" as *;
 
 html {
   background-color: $bg;
@@ -12,13 +13,55 @@ html {
   margin: 0 auto;
 
   padding-bottom: 16px;
+  border-radius: 32px;
+
+  button {
+    border: 2px solid $break-color;
+    &:disabled {
+      &:first-child {
+        border-right: none;
+      }
+      &:last-child {
+        border-left: none;
+      }
+    }
+  }
 
   img {
     @include mixins.dimension(36px, 36px);
+    border-radius: 32px;
+
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 }
 .clicked {
   opacity: 50%;
+}
+
+.button {
+  background-color: $button-color;
+  color: $button-wht;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  font-family: $subheading-Poppin;
+
+  @include mixins.dimension(120px, 60px);
+
+  border-radius: 16px;
+
+  margin-top: 1rem;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .card {
@@ -41,6 +84,7 @@ html {
     padding: 2rem 4rem;
 
     font-size: 24px;
+    font-family: $heading-Playfair;
 
     margin: 0;
   }
@@ -49,6 +93,7 @@ html {
     @include mixins.flexbox(row, space-around);
     @include mixins.wrap();
     font-size: 18px;
+    font-family: $subheading-Poppin;
 
     gap: 4rem;
   }

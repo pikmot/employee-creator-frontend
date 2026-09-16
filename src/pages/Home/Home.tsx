@@ -48,7 +48,9 @@ export default function Home() {
           <p className={classes["home__sub-title__text"]}>
             Please Click On "EDIT" for further details
           </p>
-          <button onClick={handleClick}>Add Employee</button>
+          <button onClick={handleClick} className={classes.button}>
+            Add Employee
+          </button>
         </div>
         <div className={classes.img__container}>
           <button
