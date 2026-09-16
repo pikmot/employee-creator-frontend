@@ -15,12 +15,14 @@
     padding: 2rem 4rem;
 
     font-size: 18px;
+    font-family: $heading-Playfair;
 
     margin: 0;
 
     &__button {
       border: none;
       background: none;
+      font-family: $subheading-Poppin;
     }
   }
 
@@ -33,6 +35,8 @@
     font-weight: 400;
 
     row-gap: 8px;
+
+    font-family: $subheading-Poppin;
 
     input {
       border-radius: 8px;
@@ -64,10 +68,13 @@
   &__button-container {
     button {
       font-size: 24px;
+      font-family: $subheading-Poppin;
+      font-weight: 500;
     }
   }
 
   &__error-text {
     color: $error-red;
+    font-family: $subheading-Poppin;
   }
 }
