@@ -138,10 +138,12 @@ export default function Form() {
       </header>
 
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-        <h1>Personal Information</h1>
-        <div className={classes.form__container}>
-          <label htmlFor="firstname">First Name</label>
-          {/* <input
+        <div className={classes["split-form"]}>
+          <div className={classes["form-column"]}>
+            <h1>Personal Information</h1>
+            <div className={classes.form__container}>
+              <label htmlFor="firstname">First Name</label>
+              {/* <input
             id="firstname"
             name="firstName"
             type="text"
@@ -150,13 +152,13 @@ export default function Form() {
             required
           ></input> */}
 
-          <input id="firstname" type="text" {...register("firstName")} />
-          <small className={classes["form__error-text"]}>
-            {errors.firstName?.message}
-          </small>
+              <input id="firstname" type="text" {...register("firstName")} />
+              <small className={classes["form__error-text"]}>
+                {errors.firstName?.message}
+              </small>
 
-          <label htmlFor="middlename">Middle Name</label>
-          {/* <input
+              <label htmlFor="middlename">Middle Name</label>
+              {/* <input
             id="middlename"
             name="middleName"
             type="text"
@@ -164,10 +166,10 @@ export default function Form() {
             onChange={handleChange}
           ></input> */}
 
-          <input id="middlename" type="text" {...register("middleName")} />
+              <input id="middlename" type="text" {...register("middleName")} />
 
-          <label htmlFor="lastname">Last Name</label>
-          {/* <input
+              <label htmlFor="lastname">Last Name</label>
+              {/* <input
             id="lastname"
             name="lastName"
             type="text"
@@ -176,15 +178,15 @@ export default function Form() {
             required
           ></input> */}
 
-          <input id="lastname" type="text" {...register("lastName")} />
-          <small className={classes["form__error-text"]}>
-            {errors.lastName?.message}
-          </small>
-        </div>
-        <h1>Contact Details</h1>
-        <div className={classes.form__container}>
-          <label htmlFor="email">Email Address</label>
-          {/* <input
+              <input id="lastname" type="text" {...register("lastName")} />
+              <small className={classes["form__error-text"]}>
+                {errors.lastName?.message}
+              </small>
+            </div>
+            <h1>Contact Details</h1>
+            <div className={classes.form__container}>
+              <label htmlFor="email">Email Address</label>
+              {/* <input
             id="email"
             name="email"
             type="email"
@@ -193,16 +195,16 @@ export default function Form() {
             required
           ></input> */}
 
-          <input id="email" type="email" {...register("email")} />
-          <small className={classes["form__error-text"]}>
-            {errors.email?.message}
-          </small>
+              <input id="email" type="email" {...register("email")} />
+              <small className={classes["form__error-text"]}>
+                {errors.email?.message}
+              </small>
 
-          <label htmlFor="mobileNumber">Phone Number</label>
-          <p className={classes.form__container__subtitle}>
-            Must Be An Australian Number
-          </p>
-          {/* <input
+              <label htmlFor="mobileNumber">Phone Number</label>
+              <p className={classes.form__container__subtitle}>
+                Must Be An Australian Number
+              </p>
+              {/* <input
             id="mobileNumber"
             name="mobileNumber"
             type="tel"
@@ -211,13 +213,17 @@ export default function Form() {
             required
           ></input> */}
 
-          <input id="mobileNumber" type="tel" {...register("mobileNumber")} />
-          <small className={classes["form__error-text"]}>
-            {errors.mobileNumber?.message}
-          </small>
+              <input
+                id="mobileNumber"
+                type="tel"
+                {...register("mobileNumber")}
+              />
+              <small className={classes["form__error-text"]}>
+                {errors.mobileNumber?.message}
+              </small>
 
-          <label htmlFor="address">Residential Address</label>
-          {/* <input
+              <label htmlFor="address">Residential Address</label>
+              {/* <input
             id="address"
             name="address"
             type="text"
@@ -226,17 +232,20 @@ export default function Form() {
             required
           ></input> */}
 
-          <input id="address" type="text" {...register("address")} />
-          <small className={classes["form__error-text"]}>
-            {errors.address?.message}
-          </small>
-        </div>
-        <h1>Employee Status</h1>
-        <div className={classes.form__container}>
-          <label>What Is Contract Type?</label>
+              <input id="address" type="text" {...register("address")} />
+              <small className={classes["form__error-text"]}>
+                {errors.address?.message}
+              </small>
+            </div>
+          </div>
 
-          <div className={classes["form__radio-container"]}>
-            {/* <input
+          <div>
+            <h1>Employee Status</h1>
+            <div className={classes.form__container}>
+              <label>What Is Contract Type?</label>
+
+              <div className={classes["form__radio-container"]}>
+                {/* <input
               id="permanent"
               type="radio"
               name="contractType"
@@ -245,21 +254,21 @@ export default function Form() {
               onChange={handleChange}
             /> */}
 
-            <input
-              id="permanent"
-              type="radio"
-              value="PERMANENT"
-              {...register("contractType")}
-            />
-            <small className={classes["form__error-text"]}>
-              {errors.contractType?.message}
-            </small>
+                <input
+                  id="permanent"
+                  type="radio"
+                  value="PERMANENT"
+                  {...register("contractType")}
+                />
+                <small className={classes["form__error-text"]}>
+                  {errors.contractType?.message}
+                </small>
 
-            <label htmlFor="permanent">Permanent </label>
-          </div>
+                <label htmlFor="permanent">Permanent </label>
+              </div>
 
-          <div className={classes["form__radio-container"]}>
-            {/* <input
+              <div className={classes["form__radio-container"]}>
+                {/* <input
               id="contract"
               type="radio"
               name="contractType"
@@ -268,21 +277,21 @@ export default function Form() {
               checked={employeeData.contractType === "CONTRACT"}
             /> */}
 
-            <input
-              id="contract"
-              type="radio"
-              value="CONTRACT"
-              {...register("contractType")}
-            />
-            <small className={classes["form__error-text"]}>
-              {errors.contractType?.message}
-            </small>
+                <input
+                  id="contract"
+                  type="radio"
+                  value="CONTRACT"
+                  {...register("contractType")}
+                />
+                <small className={classes["form__error-text"]}>
+                  {errors.contractType?.message}
+                </small>
 
-            <label htmlFor="contract">Contract</label>
-          </div>
+                <label htmlFor="contract">Contract</label>
+              </div>
 
-          <label htmlFor="startDate">Start Date</label>
-          {/* <input
+              <label htmlFor="startDate">Start Date</label>
+              {/* <input
             id="startDate"
             name="startDate"
             type="date"
@@ -291,13 +300,13 @@ export default function Form() {
             required
           /> */}
 
-          <input id="startDate" type="date" {...register("startDate")} />
-          <small className={classes["form__error-text"]}>
-            {errors.startDate?.message}
-          </small>
+              <input id="startDate" type="date" {...register("startDate")} />
+              <small className={classes["form__error-text"]}>
+                {errors.startDate?.message}
+              </small>
 
-          <label htmlFor="finishdate">Finish Date</label>
-          {/* <input
+              <label htmlFor="finishdate">Finish Date</label>
+              {/* <input
             id="finishdate"
             name="finishDate"
             type="date"
@@ -307,16 +316,16 @@ export default function Form() {
             required
           /> */}
 
-          <input
-            id="finishDate"
-            type="date"
-            disabled={disableFinishDate}
-            {...register("finishDate")}
-          />
+              <input
+                id="finishDate"
+                type="date"
+                disabled={disableFinishDate}
+                {...register("finishDate")}
+              />
 
-          <div className={classes["form__radio-container"]}>
-            <label htmlFor="checkBox">On Going</label>
-            {/* <input
+              <div className={classes["form__radio-container"]}>
+                <label htmlFor="checkBox">On Going</label>
+                {/* <input
               id="checkBox"
               type="checkbox"
               name="onGoing"
@@ -325,13 +334,13 @@ export default function Form() {
               onChange={handleChange}
             ></input> */}
 
-            <input id="checkBox" type="checkbox" {...register("onGoing")} />
-          </div>
+                <input id="checkBox" type="checkbox" {...register("onGoing")} />
+              </div>
 
-          <label>Is This Part-Time Or Full-Time?</label>
+              <label>Is This Part-Time Or Full-Time?</label>
 
-          <div className={classes["form__radio-container"]}>
-            {/* <input
+              <div className={classes["form__radio-container"]}>
+                {/* <input
               id="partTime"
               type="radio"
               name="employmentStatus"
@@ -340,21 +349,21 @@ export default function Form() {
               onChange={handleChange}
             /> */}
 
-            <input
-              id="partTime"
-              type="radio"
-              value="PART_TIME"
-              {...register("employmentStatus")}
-            />
-            <small className={classes["form__error-text"]}>
-              {errors.employmentStatus?.message}
-            </small>
+                <input
+                  id="partTime"
+                  type="radio"
+                  value="PART_TIME"
+                  {...register("employmentStatus")}
+                />
+                <small className={classes["form__error-text"]}>
+                  {errors.employmentStatus?.message}
+                </small>
 
-            <label htmlFor="partTime">Part-Time</label>
-          </div>
+                <label htmlFor="partTime">Part-Time</label>
+              </div>
 
-          <div className={classes["form__radio-container"]}>
-            {/* <input
+              <div className={classes["form__radio-container"]}>
+                {/* <input
               id="fullTime"
               type="radio"
               name="employmentStatus"
@@ -363,21 +372,21 @@ export default function Form() {
               onChange={handleChange}
             /> */}
 
-            <input
-              id="fullTime"
-              type="radio"
-              value="FULL_TIME"
-              {...register("employmentStatus")}
-            />
-            <small className={classes["form__error-text"]}>
-              {errors.employmentStatus?.message}
-            </small>
+                <input
+                  id="fullTime"
+                  type="radio"
+                  value="FULL_TIME"
+                  {...register("employmentStatus")}
+                />
+                <small className={classes["form__error-text"]}>
+                  {errors.employmentStatus?.message}
+                </small>
 
-            <label htmlFor="fullTime">Full-Time</label>
-          </div>
+                <label htmlFor="fullTime">Full-Time</label>
+              </div>
 
-          <label htmlFor="hoursPerWeek">Hours Per Week</label>
-          {/* <input
+              <label htmlFor="hoursPerWeek">Hours Per Week</label>
+              {/* <input
             id="hoursPerWeek"
             name="hoursPerWeek"
             type="number"
@@ -387,14 +396,16 @@ export default function Form() {
             max={168}
           /> */}
 
-          <input
-            id="hoursPerWeek"
-            type="number"
-            {...register("hoursPerWeek")}
-          />
-          <small className={classes["form__error-text"]}>
-            {errors.hoursPerWeek?.message}
-          </small>
+              <input
+                id="hoursPerWeek"
+                type="number"
+                {...register("hoursPerWeek")}
+              />
+              <small className={classes["form__error-text"]}>
+                {errors.hoursPerWeek?.message}
+              </small>
+            </div>
+          </div>
         </div>
 
         <br></br>
