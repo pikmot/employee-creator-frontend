@@ -14,7 +14,7 @@ import tableRow from "../../assets/icons/table-cells-solid-full.svg";
 export default function Home() {
   const [employees, setEmployees] = useState<Employee[]>([]);
 
-  const [tableState, setTableState] = useState(1);
+  const [tableState, setTableState] = useState(0);
 
   const navigate = useNavigate();
 

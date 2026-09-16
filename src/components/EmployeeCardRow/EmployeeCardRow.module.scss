@@ -23,11 +23,13 @@
   &__title {
     font-weight: bold;
     font-size: 24px;
+    font-family: $subheading-Poppin;
     margin: 0 0 6px 0;
   }
 
   &__body {
     margin: 0;
+    font-family: $body-text-Lato;
   }
 
   &__button {
@@ -41,6 +43,7 @@
       cursor: pointer;
 
       font-weight: 600;
+      font-family: $subheading-Poppin;
     }
   }
 

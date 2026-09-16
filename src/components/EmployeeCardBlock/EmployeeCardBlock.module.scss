@@ -1,6 +1,7 @@
 @use "../../scss/mixins/mixins";
 @use "../../scss/mixins/colors" as *;
 @use "../../scss/mixins/media";
+@use "../../scss/mixins/fonts" as *;
 
 .employee-card {
   @include mixins.dimension(300px);
@@ -23,6 +24,7 @@
   &__title {
     font-weight: bold;
     font-size: 24px;
+    font-family: $subheading-Poppin;
     margin: 0 0 6px 0;
     text-align: center;
   }
@@ -30,6 +32,7 @@
   &__body {
     margin: 0;
     text-align: center;
+    font-family: $body-text-Lato;
   }
 
   &__button {
@@ -41,6 +44,7 @@
       cursor: pointer;
 
       font-weight: 600;
+      font-family: $subheading-Poppin;
     }
   }
   &__img {
