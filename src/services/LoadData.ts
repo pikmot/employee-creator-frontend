@@ -7,13 +7,13 @@ import type {
 } from "../Employee";
 
 export const fetchAllEmployee = async (): Promise<Employee[]> => {
-  let response: Employee[] = await fetch(BACKEND_URL + "/employees").then(
-    (res) => res.json(),
-  );
+  let response: Employee[] = await fetch(
+    BACKEND_URL + "/employees" + "?page=1",
+  ).then((res) => res.json());
 
   console.log(response);
 
-  return response;
+  return response.data;
 };
 
 export const fetchEmployeeById = async (id: number): Promise<Employee> => {
