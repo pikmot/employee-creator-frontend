@@ -1,0 +1,27 @@
+@use "../../scss/mixins/mixins";
+@use "../../scss/mixins/colors" as *;
+@use "../../scss/mixins/media";
+@use "../../scss/mixins/fonts" as *;
+
+.pageCounter {
+  @include mixins.dimension();
+  @include mixins.flexbox(column);
+  @include mixins.wrap();
+
+  gap: 0.25rem;
+
+  margin-bottom: 1rem;
+
+  &__text {
+    font-family: $subheading-Poppin;
+
+    font-size: 24px;
+  }
+
+  &__button {
+    font-family: $subheading-Poppin;
+    font-size: 24px;
+
+    border-radius: 24px;
+  }
+}

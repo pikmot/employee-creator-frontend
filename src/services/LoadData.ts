@@ -6,14 +6,23 @@ import type {
   UpdateEmployeeData,
 } from "../Employee";
 
-export const fetchAllEmployee = async (): Promise<Employee[]> => {
-  let response: Employee[] = await fetch(
-    BACKEND_URL + "/employees" + "?page=1",
+export interface PageResponse {
+  currentPage: number;
+  totalPages: number;
+  data: Employee[];
+}
+
+export const fetchAllEmployee = async (
+  page = 1,
+  size = 5,
+): Promise<PageResponse> => {
+  let response: PageResponse = await fetch(
+    BACKEND_URL + "/employees" + "?page=" + page + "&size=" + size,
   ).then((res) => res.json());
 
   console.log(response);
 
-  return response.data;
+  return response;
 };
 
 export const fetchEmployeeById = async (id: number): Promise<Employee> => {

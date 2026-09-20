@@ -11,17 +11,24 @@ import { useNavigate } from "react-router";
 import tableGrid from "../../assets/icons/table-list-solid-full.svg";
 import tableRow from "../../assets/icons/table-cells-solid-full.svg";
 
+import PageCounter from "../../components/PageCounter/PageCounter";
+
 export default function Home() {
   const [employees, setEmployees] = useState<Employee[]>([]);
 
   const [tableState, setTableState] = useState(0);
 
+  const [page, setCurrentPage] = useState(1);
+  const [finalPage, setFinalPage] = useState(1);
+
   const navigate = useNavigate();
 
   const getEmployeesData = async () => {
-    const data = await fetchAllEmployee();
+    const data = await fetchAllEmployee(page);
 
-    setEmployees(data);
+    setEmployees(data["data"]);
+    setCurrentPage(data["currentPage"]);
+    setFinalPage(data["totalPages"]);
   };
 
   const handleTableChange = () => {
@@ -38,7 +45,7 @@ export default function Home() {
 
   useEffect(() => {
     getEmployeesData();
-  }, []);
+  }, [page]);
 
   return (
     <div>
@@ -70,6 +77,14 @@ export default function Home() {
         </div>
       </article>
 
+      <hr className={classes["line-break"]} />
+
+      <PageCounter
+        page={page}
+        setCurrentPage={setCurrentPage}
+        finalPage={finalPage}
+      />
+
       <div className={classes.card}>
         {employees.map((employee) => {
           if (tableState === 1) {
@@ -91,6 +106,14 @@ export default function Home() {
           }
         })}
       </div>
+
+      <hr className={classes["line-break"]} />
+
+      <PageCounter
+        page={page}
+        setCurrentPage={setCurrentPage}
+        finalPage={finalPage}
+      />
     </div>
   );
 }
