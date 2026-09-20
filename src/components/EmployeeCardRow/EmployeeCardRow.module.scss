@@ -4,7 +4,7 @@
 @use "../../scss/mixins/fonts" as *;
 
 .employee-card {
-  @include mixins.dimension(80%);
+  @include mixins.dimension(85%);
   @include mixins.flexbox(row, flex-start);
   @include mixins.wrap(flex-start);
 
@@ -30,6 +30,7 @@
   &__body {
     margin: 0;
     font-family: $body-text-Lato;
+    font-size: 20px;
   }
 
   &__button {

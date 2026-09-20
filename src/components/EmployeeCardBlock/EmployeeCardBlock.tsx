@@ -47,7 +47,7 @@ export default function EmployeeCardBlock({
         <p className={classes["employee-card__body"]}>
           {employee.contractType} - {employmentTime}yr
         </p>
-        <p className={classes["employee-card__body"]}>{employee.firstName}</p>
+        <p className={classes["employee-card__body"]}>{employee.email}</p>
       </div>
       <div className={classes["employee-card__button"]}>
         <button onClick={handleEdit}> Edit</button> |{" "}

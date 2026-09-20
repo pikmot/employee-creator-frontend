@@ -24,7 +24,7 @@ export default function PageCounter({
   return (
     <div className={classes.pageCounter}>
       <div className={classes.pageCounter__text}>
-        {page}/{finalPage}
+        Page {page} / {finalPage}
       </div>
       <div className={classes.pageCounter__button}>
         <button disabled={page <= 1} onClick={decrementCounter}>
