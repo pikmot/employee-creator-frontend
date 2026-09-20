@@ -2,7 +2,7 @@ import React from "react";
 
 import classes from "./EmployeeCardRow.module.scss";
 import type { Employee } from "../../Employee";
-import { fetchAllEmployee, deleteEmployee } from "../../services/LoadData";
+import { deleteEmployee } from "../../services/LoadData";
 import { useNavigate } from "react-router";
 
 import userImg from "../../assets/icons/circle-user-solid-full.svg";
@@ -10,11 +10,13 @@ import userImg from "../../assets/icons/circle-user-solid-full.svg";
 interface EmloyeeCardRowProps {
   employee: Employee;
   setEmployees: (employee: Employee[]) => void;
+  getEmployeesData: () => void;
 }
 
 export default function EmployeeCard({
   employee,
   setEmployees,
+  getEmployeesData,
 }: EmloyeeCardRowProps) {
   const navigate = useNavigate();
 
@@ -40,7 +42,8 @@ export default function EmployeeCard({
   const handleDelete = async () => {
     //don't forget awaits IMPORTANT
     await deleteEmployee(employee.id);
-    setEmployees(await fetchAllEmployee());
+    // setEmployees((await fetchAllEmployee())["data"]);
+    getEmployeesData();
   };
 
   const handleEdit = async () => {

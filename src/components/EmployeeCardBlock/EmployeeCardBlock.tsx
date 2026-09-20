@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import classes from "./EmployeeCardBlock.module.scss";
 import type { Employee } from "../../Employee";
@@ -10,11 +10,13 @@ import userImg from "../../assets/icons/circle-user-solid-full.svg";
 interface EmployeeCardBlock {
   employee: Employee;
   setEmployees: (employee: Employee[]) => void;
+  getEmployeesData: () => void;
 }
 
 export default function EmployeeCardBlock({
   employee,
   setEmployees,
+  getEmployeesData,
 }: EmployeeCardBlock) {
   const navigate = useNavigate();
 
@@ -30,12 +32,14 @@ export default function EmployeeCardBlock({
 
   const handleDelete = async () => {
     await deleteEmployee(employee.id);
-    setEmployees(await fetchAllEmployee());
+    getEmployeesData();
   };
 
   const handleEdit = async () => {
     navigate("/employees/" + employee.id + "/editEmployee");
   };
+
+  useEffect(() => {}, [employee]);
 
   return (
     <article className={classes["employee-card"]}>

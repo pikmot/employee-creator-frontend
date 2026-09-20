@@ -79,11 +79,13 @@ export default function Home() {
 
       <hr className={classes["line-break"]} />
 
-      <PageCounter
-        page={page}
-        setCurrentPage={setCurrentPage}
-        finalPage={finalPage}
-      />
+      {finalPage > 1 ? (
+        <PageCounter
+          page={page}
+          setCurrentPage={setCurrentPage}
+          finalPage={finalPage}
+        />
+      ) : null}
 
       <div className={classes.card}>
         {employees.map((employee) => {
@@ -93,6 +95,7 @@ export default function Home() {
                 key={employee["id"]}
                 employee={employee}
                 setEmployees={setEmployees}
+                getEmployeesData={getEmployeesData}
               />
             );
           } else {
@@ -101,6 +104,7 @@ export default function Home() {
                 key={employee["id"]}
                 employee={employee}
                 setEmployees={setEmployees}
+                getEmployeesData={getEmployeesData}
               />
             );
           }
@@ -109,11 +113,13 @@ export default function Home() {
 
       <hr className={classes["line-break"]} />
 
-      <PageCounter
-        page={page}
-        setCurrentPage={setCurrentPage}
-        finalPage={finalPage}
-      />
+      {finalPage > 1 ? (
+        <PageCounter
+          page={page}
+          setCurrentPage={setCurrentPage}
+          finalPage={finalPage}
+        />
+      ) : null}
     </div>
   );
 }
