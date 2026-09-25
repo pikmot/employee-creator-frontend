@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import classes from "./Home.module.scss";
 
@@ -11,6 +11,8 @@ import { useNavigate } from "react-router";
 import tableGrid from "../../assets/icons/table-list-solid-full.svg";
 import tableRow from "../../assets/icons/table-cells-solid-full.svg";
 
+import SearchBar from "../../components/SearchBar/SearchBar";
+
 import PageCounter from "../../components/PageCounter/PageCounter";
 
 export default function Home() {
@@ -21,10 +23,12 @@ export default function Home() {
   const [page, setCurrentPage] = useState(1);
   const [finalPage, setFinalPage] = useState(1);
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   const navigate = useNavigate();
 
   const getEmployeesData = async () => {
-    const data = await fetchAllEmployee(page);
+    const data = await fetchAllEmployee(page, undefined, searchTerm);
 
     setEmployees(data["data"]);
     setCurrentPage(data["currentPage"]);
@@ -45,7 +49,8 @@ export default function Home() {
 
   useEffect(() => {
     getEmployeesData();
-  }, [page]);
+    // console.log("rerender");
+  }, [page, searchTerm]);
 
   return (
     <div>
@@ -78,6 +83,11 @@ export default function Home() {
       </article>
 
       <hr className={classes["line-break"]} />
+
+      <SearchBar
+        setSearchTerm={setSearchTerm}
+        setCurrentPage={setCurrentPage}
+      />
 
       {finalPage > 1 ? (
         <PageCounter

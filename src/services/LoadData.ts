@@ -15,12 +15,20 @@ export interface PageResponse {
 export const fetchAllEmployee = async (
   page = 1,
   size = 5,
+  searchTerm = "",
 ): Promise<PageResponse> => {
   let response: PageResponse = await fetch(
-    BACKEND_URL + "/employees" + "?page=" + page + "&size=" + size,
+    BACKEND_URL +
+      "/employees" +
+      "?page=" +
+      page +
+      "&size=" +
+      size +
+      "&searchTerm=" +
+      searchTerm,
   ).then((res) => res.json());
 
-  console.log(response);
+  // console.log(response);
 
   return response;
 };
