@@ -11,6 +11,8 @@ import { useNavigate } from "react-router";
 import tableGrid from "../../assets/icons/table-list-solid-full.svg";
 import tableRow from "../../assets/icons/table-cells-solid-full.svg";
 
+import Dropdown from "../../components/Dropdown/Dropdown";
+
 import SearchBar from "../../components/SearchBar/SearchBar";
 
 import PageCounter from "../../components/PageCounter/PageCounter";
@@ -101,6 +103,8 @@ export default function Home() {
         setSearchTerm={setSearchTerm}
         setCurrentPage={setCurrentPage}
       />
+
+      <Dropdown />
 
       {finalPage > 1 ? (
         <PageCounter
