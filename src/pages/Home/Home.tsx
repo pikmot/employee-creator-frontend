@@ -16,6 +16,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import PageCounter from "../../components/PageCounter/PageCounter";
 
 import Spinner from "../../components/Spinner/Spinner";
+import Error from "../../components/Error/Error";
 
 export default function Home() {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -27,14 +28,24 @@ export default function Home() {
 
   const [searchTerm, setSearchTerm] = useState("");
 
+  const [loadingState, setLoadingState] = useState("LOADING");
+
   const navigate = useNavigate();
 
   const getEmployeesData = async () => {
-    const data = await fetchAllEmployee(page, undefined, searchTerm);
+    setLoadingState("LOADING");
 
-    setEmployees(data["data"]);
-    setCurrentPage(data["currentPage"]);
-    setFinalPage(data["totalPages"]);
+    try {
+      const data = await fetchAllEmployee(page, undefined, searchTerm);
+
+      setEmployees(data["data"]);
+      setCurrentPage(data["currentPage"]);
+      setFinalPage(data["totalPages"]);
+    } catch {
+      setLoadingState("ERROR");
+    } finally {
+      setLoadingState("SUCCESS");
+    }
   };
 
   const handleTableChange = () => {
@@ -86,8 +97,6 @@ export default function Home() {
 
       <hr className={classes["line-break"]} />
 
-      <Spinner />
-
       <SearchBar
         setSearchTerm={setSearchTerm}
         setCurrentPage={setCurrentPage}
@@ -102,27 +111,33 @@ export default function Home() {
       ) : null}
 
       <div className={classes.card}>
-        {employees.map((employee) => {
-          if (tableState === 1) {
-            return (
-              <EmployeeCardRow
-                key={employee["id"]}
-                employee={employee}
-                setEmployees={setEmployees}
-                getEmployeesData={getEmployeesData}
-              />
-            );
-          } else {
-            return (
-              <EmployeeCardBlock
-                key={employee["id"]}
-                employee={employee}
-                setEmployees={setEmployees}
-                getEmployeesData={getEmployeesData}
-              />
-            );
-          }
-        })}
+        {loadingState === "LOADING" ? (
+          <Spinner />
+        ) : loadingState === "ERROR" ? (
+          <Error />
+        ) : (
+          employees.map((employee) => {
+            if (tableState === 1) {
+              return (
+                <EmployeeCardRow
+                  key={employee["id"]}
+                  employee={employee}
+                  setEmployees={setEmployees}
+                  getEmployeesData={getEmployeesData}
+                />
+              );
+            } else {
+              return (
+                <EmployeeCardBlock
+                  key={employee["id"]}
+                  employee={employee}
+                  setEmployees={setEmployees}
+                  getEmployeesData={getEmployeesData}
+                />
+              );
+            }
+          })
+        )}
       </div>
 
       <hr className={classes["line-break"]} />
