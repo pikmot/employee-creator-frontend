@@ -1,0 +1,23 @@
+@use "../../scss/mixins/mixins";
+@use "../../scss/mixins/colors" as *;
+@use "../../scss/mixins/media";
+@use "../../scss/mixins/fonts" as *;
+
+.spinner {
+  @include mixins.dimension(30px, 30px);
+
+  display: block;
+  margin: 0 auto;
+
+  animation: spin 5s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -15,6 +15,8 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 
 import PageCounter from "../../components/PageCounter/PageCounter";
 
+import Spinner from "../../components/Spinner/Spinner";
+
 export default function Home() {
   const [employees, setEmployees] = useState<Employee[]>([]);
 
@@ -83,6 +85,8 @@ export default function Home() {
       </article>
 
       <hr className={classes["line-break"]} />
+
+      <Spinner />
 
       <SearchBar
         setSearchTerm={setSearchTerm}
