@@ -28,6 +28,8 @@ export default function Home() {
   const [page, setCurrentPage] = useState(1);
   const [finalPage, setFinalPage] = useState(1);
 
+  const [pageSize, setPageSize] = useState(5);
+
   const [searchTerm, setSearchTerm] = useState("");
 
   const [loadingState, setLoadingState] = useState("LOADING");
@@ -38,7 +40,7 @@ export default function Home() {
     setLoadingState("LOADING");
 
     try {
-      const data = await fetchAllEmployee(page, undefined, searchTerm);
+      const data = await fetchAllEmployee(page, pageSize, searchTerm);
 
       setEmployees(data["data"]);
       setCurrentPage(data["currentPage"]);
@@ -65,7 +67,7 @@ export default function Home() {
   useEffect(() => {
     getEmployeesData();
     // console.log("rerender");
-  }, [page, searchTerm]);
+  }, [page, searchTerm, pageSize]);
 
   return (
     <div>
@@ -104,7 +106,7 @@ export default function Home() {
         setCurrentPage={setCurrentPage}
       />
 
-      <Dropdown />
+      <Dropdown setPageSize={setPageSize} setCurrentPage={setCurrentPage} />
 
       {finalPage > 1 ? (
         <PageCounter

@@ -6,12 +6,12 @@
 .dropDown {
   @include mixins.dimension(100px, 50px);
   display: block;
-  margin: 0 auto;
+  margin: 0.5rem auto;
 
   text-align: center;
 
   border: 1px solid $input-border;
-  border-radius: 8px;
+  border-radius: 12px;
 
   font-weight: 500;
   font-family: $subheading-Poppin;
@@ -25,4 +25,7 @@ select {
 
 option {
   cursor: pointer;
+  font-weight: 500;
+  font-family: $subheading-Poppin;
+  font-size: 24px;
 }
