@@ -4,7 +4,12 @@ import classes from "./Home.module.scss";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { deleteEmployee, fetchAllEmployee } from "../../services/LoadData";
+import {
+  createEmployee,
+  deleteEmployee,
+  fetchAllEmployee,
+  patchEmployee,
+} from "../../services/LoadData";
 import type { Employee } from "../../Employee";
 import EmployeeCardRow from "../../components/EmployeeCardRow/EmployeeCardRow";
 import EmployeeCardBlock from "../../components/EmployeeCardBlock/EmployeeCardBlock";

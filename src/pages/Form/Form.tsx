@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import classes from "./Form.module.scss";
 
@@ -12,6 +13,8 @@ import {
   fetchEmployeeById,
   patchEmployee,
 } from "../../services/LoadData";
+
+import type { CreateEmployeeData } from "../../Employee";
 
 export default function Form() {
   const {
@@ -33,6 +36,8 @@ export default function Form() {
   const isEditingEmployee = Boolean(id);
 
   const disableFinishDate = watch("onGoing");
+
+  const queryClient = useQueryClient();
 
   // const [onGoing, setOnGoing] = useState(false);
   const [employeeData, setEmployeeData] = useState({
@@ -118,14 +123,32 @@ export default function Form() {
   //   navigate("/");
   // };
 
-  const onSubmit = async (data) => {
+  const createMutation = useMutation({
+    mutationFn: createEmployee,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["employees"] });
+      navigate("/");
+    },
+  });
+
+  const patchMutation = useMutation({
+    mutationFn: (data) => patchEmployee(Number(id), data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["employees"] });
+      navigate("/");
+    },
+  });
+
+  const onSubmit = async (data: CreateEmployeeData) => {
     if (isEditingEmployee) {
-      await patchEmployee(Number(id), data);
+      // await patchEmployee(Number(id), data);
+      patchMutation.mutate(data);
     } else {
-      await createEmployee(data);
+      // await createEmployee(data);
+      createMutation.mutate(data);
     }
 
-    navigate("/");
+    // navigate("/");
   };
 
   return (
