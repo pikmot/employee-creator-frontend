@@ -1,7 +1,7 @@
 export interface Employee {
   id: number;
   firstName: string;
-  middleName: string;
+  middleName?: string;
   lastName: string;
   email: string;
   mobileNumber: string;
@@ -9,13 +9,13 @@ export interface Employee {
   contractType: "PERMANENT" | "CONTRACT";
   employmentStatus: "FULL_TIME" | "PART_TIME";
   startDate: string;
-  finishDate: string;
+  finishDate?: string;
   onGoing: boolean;
   hoursPerWeek: number;
 }
 export interface CreateEmployeeData {
   firstName: string;
-  middleName: string;
+  middleName?: string;
   lastName: string;
   email: string;
   mobileNumber: string;
@@ -23,7 +23,7 @@ export interface CreateEmployeeData {
   contractType: "PERMANENT" | "CONTRACT";
   employmentStatus: "FULL_TIME" | "PART_TIME";
   startDate: string;
-  finishDate: string;
+  finishDate?: string;
   onGoing: boolean;
   hoursPerWeek: number;
 }

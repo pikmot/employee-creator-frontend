@@ -19,7 +19,7 @@ import type { CreateEmployeeData } from "../../Employee";
 export default function Form() {
   const {
     reset,
-    formState: { errors, isSubmitSuccesful },
+    formState: { errors },
     register,
     handleSubmit,
     watch,
@@ -132,7 +132,7 @@ export default function Form() {
   });
 
   const patchMutation = useMutation({
-    mutationFn: (data) => patchEmployee(Number(id), data),
+    mutationFn: (data: CreateEmployeeData) => patchEmployee(Number(id), data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["employees"] });
       navigate("/");
