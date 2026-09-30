@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 
 import classes from "./Home.module.scss";
 
-import { fetchAllEmployee } from "../../services/LoadData";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { deleteEmployee, fetchAllEmployee } from "../../services/LoadData";
 import type { Employee } from "../../Employee";
 import EmployeeCardRow from "../../components/EmployeeCardRow/EmployeeCardRow";
 import EmployeeCardBlock from "../../components/EmployeeCardBlock/EmployeeCardBlock";
@@ -21,36 +23,48 @@ import Spinner from "../../components/Spinner/Spinner";
 import Error from "../../components/Error/Error";
 
 export default function Home() {
-  const [employees, setEmployees] = useState<Employee[]>([]);
+  // const [employees, setEmployees] = useState<Employee[]>([]);
 
   const [tableState, setTableState] = useState(0);
 
   const [page, setCurrentPage] = useState(1);
-  const [finalPage, setFinalPage] = useState(1);
+  // const [finalPage, setFinalPage] = useState(1);
 
   const [pageSize, setPageSize] = useState(5);
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  const [loadingState, setLoadingState] = useState("LOADING");
+  // const [loadingState, setLoadingState] = useState("LOADING");
 
   const navigate = useNavigate();
 
-  const getEmployeesData = async () => {
-    setLoadingState("LOADING");
+  // const getEmployeesData = async () => {
+  // setLoadingState("LOADING");
+  // try {
+  //   const data = await fetchAllEmployee(page, pageSize, searchTerm);
+  //   setEmployees(data["data"]);
+  //   setCurrentPage(data["currentPage"]);
+  //   setFinalPage(data["totalPages"]);
+  // } catch {
+  //   setLoadingState("ERROR");
+  // } finally {
+  //   setLoadingState("SUCCESS");
+  // }
+  // };
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["employees", page, pageSize, searchTerm],
+    queryFn: () => fetchAllEmployee(page, pageSize, searchTerm),
+  });
 
-    try {
-      const data = await fetchAllEmployee(page, pageSize, searchTerm);
+  const employees = data?.data ?? [];
+  const finalPage = data?.totalPages ?? 5;
 
-      setEmployees(data["data"]);
-      setCurrentPage(data["currentPage"]);
-      setFinalPage(data["totalPages"]);
-    } catch {
-      setLoadingState("ERROR");
-    } finally {
-      setLoadingState("SUCCESS");
-    }
-  };
+  const queryClient = useQueryClient();
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteEmployee,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["employees"] }),
+  });
 
   const handleTableChange = () => {
     if (tableState == 0) {
@@ -64,10 +78,10 @@ export default function Home() {
     navigate("/employees/createEmployee");
   };
 
-  useEffect(() => {
-    getEmployeesData();
-    // console.log("rerender");
-  }, [page, searchTerm, pageSize]);
+  // useEffect(() => {
+  //   getEmployeesData();
+  //   // console.log("rerender");
+  // }, [page, searchTerm, pageSize]);
 
   return (
     <div>
@@ -117,9 +131,9 @@ export default function Home() {
       ) : null}
 
       <div className={classes.card}>
-        {loadingState === "LOADING" ? (
+        {isLoading ? (
           <Spinner />
-        ) : loadingState === "ERROR" ? (
+        ) : isError ? (
           <Error />
         ) : (
           employees.map((employee) => {
@@ -128,8 +142,7 @@ export default function Home() {
                 <EmployeeCardRow
                   key={employee["id"]}
                   employee={employee}
-                  setEmployees={setEmployees}
-                  getEmployeesData={getEmployeesData}
+                  onDelete={() => deleteMutation.mutate(employee.id)}
                 />
               );
             } else {
@@ -137,8 +150,7 @@ export default function Home() {
                 <EmployeeCardBlock
                   key={employee["id"]}
                   employee={employee}
-                  setEmployees={setEmployees}
-                  getEmployeesData={getEmployeesData}
+                  onDelete={() => deleteMutation.mutate(employee.id)}
                 />
               );
             }

@@ -2,21 +2,21 @@ import React, { useEffect } from "react";
 
 import classes from "./EmployeeCardBlock.module.scss";
 import type { Employee } from "../../Employee";
-import { fetchAllEmployee, deleteEmployee } from "../../services/LoadData";
+// import { fetchAllEmployee, deleteEmployee } from "../../services/LoadData";
 import { useNavigate } from "react-router";
 
 import userImg from "../../assets/icons/circle-user-solid-full.svg";
 
 interface EmployeeCardBlock {
   employee: Employee;
-  setEmployees: (employee: Employee[]) => void;
-  getEmployeesData: () => void;
+  // setEmployees: (employee: Employee[]) => void;
+  // getEmployeesData: () => void;
+  onDelete: () => void;
 }
 
 export default function EmployeeCardBlock({
   employee,
-  setEmployees,
-  getEmployeesData,
+  onDelete,
 }: EmployeeCardBlock) {
   const navigate = useNavigate();
 
@@ -30,10 +30,10 @@ export default function EmployeeCardBlock({
     (endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24 / 365,
   );
 
-  const handleDelete = async () => {
-    await deleteEmployee(employee.id);
-    getEmployeesData();
-  };
+  // const handleDelete = async () => {
+  //   await deleteEmployee(employee.id);
+  //   getEmployeesData();
+  // };
 
   const handleEdit = async () => {
     navigate("/employees/" + employee.id + "/editEmployee");
@@ -55,7 +55,7 @@ export default function EmployeeCardBlock({
       </div>
       <div className={classes["employee-card__button"]}>
         <button onClick={handleEdit}> Edit</button> |{" "}
-        <button onClick={handleDelete}>Remove</button>
+        <button onClick={onDelete}>Remove</button>
       </div>
     </article>
   );

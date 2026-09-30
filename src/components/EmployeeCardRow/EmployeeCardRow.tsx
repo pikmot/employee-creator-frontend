@@ -2,21 +2,20 @@ import React from "react";
 
 import classes from "./EmployeeCardRow.module.scss";
 import type { Employee } from "../../Employee";
-import { deleteEmployee } from "../../services/LoadData";
+// import { deleteEmployee } from "../../services/LoadData";
 import { useNavigate } from "react-router";
 
 import userImg from "../../assets/icons/circle-user-solid-full.svg";
 
 interface EmloyeeCardRowProps {
   employee: Employee;
-  setEmployees: (employee: Employee[]) => void;
-  getEmployeesData: () => void;
+
+  onDelete: () => void;
 }
 
 export default function EmployeeCard({
   employee,
-  setEmployees,
-  getEmployeesData,
+  onDelete,
 }: EmloyeeCardRowProps) {
   const navigate = useNavigate();
 
@@ -39,12 +38,12 @@ export default function EmployeeCard({
 
   //   console.log(employmentTime);
 
-  const handleDelete = async () => {
-    //don't forget awaits IMPORTANT
-    await deleteEmployee(employee.id);
-    // setEmployees((await fetchAllEmployee())["data"]);
-    getEmployeesData();
-  };
+  // const handleDelete = async () => {
+  //   //don't forget awaits IMPORTANT
+  //   await deleteEmployee(employee.id);
+  //   // setEmployees((await fetchAllEmployee())["data"]);
+  //   getEmployeesData();
+  // };
 
   const handleEdit = async () => {
     navigate("/employees/" + employee.id + "/editEmployee");
@@ -64,7 +63,7 @@ export default function EmployeeCard({
       </div>
       <div className={classes["employee-card__button"]}>
         <button onClick={handleEdit}> Edit</button> |{" "}
-        <button onClick={handleDelete}>Remove</button>
+        <button onClick={onDelete}>Remove</button>
       </div>
     </article>
   );
