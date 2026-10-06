@@ -24,6 +24,8 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 
 import PageCounter from "../../components/PageCounter/PageCounter";
 
+import Modal from "../../components/Modal/Modal";
+
 import Spinner from "../../components/Spinner/Spinner";
 import Error from "../../components/Error/Error";
 
@@ -38,6 +40,8 @@ export default function Home() {
   const [pageSize, setPageSize] = useState(5);
 
   const [searchTerm, setSearchTerm] = useState("");
+
+  const [selectedEmployee, setSelectedEmployee] = useState();
 
   // const [loadingState, setLoadingState] = useState("LOADING");
 
