@@ -4,11 +4,13 @@ import type { Employee } from "../../Employee";
 
 interface ModalProps {
   employee: Employee;
+  onClose: () => void;
 }
 
-export default function Modal({ employee }: ModalProps) {
+export default function Modal({ employee, onClose }: ModalProps) {
   return (
     <div>
+      <button onClick={onClose}>X</button>
       <h2>{employee.firstName + employee.middleName + employee.lastName}</h2>
       <p>Email : {employee.email}</p>
       <p>Mobile: {employee.mobileNumber}</p>

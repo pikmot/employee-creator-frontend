@@ -41,7 +41,9 @@ export default function Home() {
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  const [selectedEmployee, setSelectedEmployee] = useState();
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(
+    null,
+  );
 
   // const [loadingState, setLoadingState] = useState("LOADING");
 
@@ -139,6 +141,13 @@ export default function Home() {
         />
       ) : null}
 
+      {selectedEmployee && (
+        <Modal
+          employee={selectedEmployee}
+          onClose={() => setSelectedEmployee(null)}
+        />
+      )}
+
       <div className={classes.card}>
         {isLoading ? (
           <Spinner />
@@ -160,6 +169,7 @@ export default function Home() {
                   key={employee["id"]}
                   employee={employee}
                   onDelete={() => deleteMutation.mutate(employee.id)}
+                  onModalClick={() => setSelectedEmployee(employee)}
                 />
               );
             }

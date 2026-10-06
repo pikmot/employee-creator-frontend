@@ -12,11 +12,13 @@ interface EmployeeCardBlock {
   // setEmployees: (employee: Employee[]) => void;
   // getEmployeesData: () => void;
   onDelete: () => void;
+  onModalClick: () => void;
 }
 
 export default function EmployeeCardBlock({
   employee,
   onDelete,
+  onModalClick,
 }: EmployeeCardBlock) {
   const navigate = useNavigate();
 
@@ -42,7 +44,7 @@ export default function EmployeeCardBlock({
   useEffect(() => {}, [employee]);
 
   return (
-    <article className={classes["employee-card"]}>
+    <article className={classes["employee-card"]} onClick={onModalClick}>
       <div>
         <img src={userImg} className={classes["employee-card__img"]} />
         <p className={classes["employee-card__title"]}>
