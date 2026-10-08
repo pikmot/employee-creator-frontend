@@ -4,22 +4,31 @@
 @use "../../scss//mixins/fonts" as *;
 
 .modal {
-  position: relative;
-}
-
-.overlay {
-  @include mixins.dimension(fit-content, fit-content);
-  @include mixins.flexbox();
-
-  inset: 0;
-  margin: auto auto;
-  z-index: 1;
-
-  border: 2px solid black;
+  border: 2px solid $glass-border;
   border-radius: 1rem;
   padding: 1rem;
 
-  position: fixed;
-  background-color: rgba(94, 94, 94, 0.5);
-  backdrop-filter: blur(12px);
+  background-color: $glass-color;
+
+  box-shadow: 0 8px 32px 0 $glass-shadow-color;
+
+  &::backdrop {
+    backdrop-filter: blur(12px);
+    background-color: $glass-bg;
+  }
 }
+
+// .overlay {
+//   @include mixins.dimension(fit-content, fit-content);
+//   @include mixins.flexbox();
+
+//   inset: 0;
+//   margin: auto auto;
+//   z-index: 1;
+
+//
+
+//   position: fixed;
+//   background-color: rgba(94, 94, 94, 0.5);
+//   backdrop-filter: blur(12px);
+// }
