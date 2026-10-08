@@ -27,7 +27,7 @@ export default function Modal({ employee, onClose }: ModalProps) {
       <p>Status: {employee.employmentStatus}</p>
       <p>Hours per week: {employee.hoursPerWeek}</p>
       <p>Start date: {employee.startDate}</p>
-      <p>Finish date: {employee.finishDate}</p>
+      <p>Finish date: {employee.onGoing ? "ONGOING" : employee.finishDate}</p>
     </dialog>
   );
 }
