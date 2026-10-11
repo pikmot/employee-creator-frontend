@@ -169,8 +169,6 @@ The backend must be running (see the backend repo). It allows requests from `loc
 
 ## What did you struggle with?
 
-## What did you struggle with?
-
 - **Async calls.** Forgetting `await` on delete caused "so many bugs", and create and edit were buggy at first.
 - **Matching field names with the backend.** The `onGoing` naming mismatch lost data until I fixed it on both sides.
 - **React Hook Form and Zod.** Moving the form over took several commits to get schema names, defaults and the finish date behavior right.
