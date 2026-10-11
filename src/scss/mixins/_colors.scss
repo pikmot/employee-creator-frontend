@@ -1,19 +1,27 @@
+// light mode
 $header-bg: rgba(119, 119, 119, 0.233);
-
 $bg: rgba(250, 246, 246, 0.493);
-
 $button-color: rgb(48, 96, 168);
 $button-wht: white;
-
 $radio-color: rgba(66, 66, 66, 0.726);
-
 $input-border: rgba(0, 0, 0, 0.514);
-
 $error-red: oklch(63.7% 0.237 25.331);
-
 $break-color: rgba(78, 78, 78, 0.288);
-
 $glass-color: oklch(98.415% 0.00352 248.585 / 0.815);
 $glass-border: rgba(255, 255, 255, 0.25);
 $glass-shadow-color: hsla(0, 0%, 0%, 0.15);
 $glass-bg: rgba(128, 128, 128, 0.39);
+
+// dark mode
+$header-bg-dark: rgba(255, 255, 255, 0.08);
+$bg-dark: rgb(18, 18, 24);
+$button-color-dark: rgb(91, 139, 217);
+$radio-color-dark: rgba(200, 200, 210, 0.75);
+$input-border-dark: rgba(255, 255, 255, 0.45);
+$error-red-dark: oklch(72% 0.17 25);
+$break-color-dark: rgba(255, 255, 255, 0.18);
+$glass-color-dark: oklch(25% 0.01 265 / 0.7);
+$glass-border-dark: rgba(255, 255, 255, 0.12);
+$glass-shadow-color-dark: hsla(0, 0%, 0%, 0.5);
+$glass-bg-dark: rgba(0, 0, 0, 0.55);
+$text-color-dark: rgb(230, 230, 236);
